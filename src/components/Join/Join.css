@@ -69,3 +69,7 @@ html, body {
   button:focus {
     outline: 0;
   }
+
+  #signInButton:hover{
+      cursor: pointer;
+  }
