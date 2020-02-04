@@ -8,6 +8,8 @@ const Chat = ({ location })=> { //location is a prop coming from react router
 
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);
     const ENDPOINT = 'localhost:5000';
 
     useEffect(()=>{ //simulates component did mount/component did update -- the react hook method of lifecyle methods
@@ -30,8 +32,30 @@ const Chat = ({ location })=> { //location is a prop coming from react router
        }
     }, [ENDPOINT, location.search]); //only if the two values in array change is the useEffect called again and the component rerendered
 
+    useEffect(()=>{
+        socket.on('message', (message)=>{
+            setMessages([...messages, message])
+        })
+    }, [messages])
+
+    const sendMessage = (event) => {
+        event.preventDefault(); //prevent page from reloading agian
+        if (message) {
+            socket.emit('sendMessage', message, ()=>{setMessage('')})
+        }
+    }
+
+    console.log(message, messages);
+    
     return (
-        <h1>Chat</h1>
+        <div className="outerContainer">
+            <div className="container">
+                <input 
+                value={message} 
+                onChange={event=>setMessage(event.target.value)}
+                onKeyPress={event=>event.key === 'Enter' ? sendMessage(event) : null}/>
+            </div>
+        </div>
     )
 }
 
