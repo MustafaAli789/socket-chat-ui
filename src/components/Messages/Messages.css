@@ -3,3 +3,9 @@
     overflow: auto;
     flex: auto;
   }
+
+  .css-13azwyo{
+      overflow-y: auto;
+      padding-top: 10px;
+      padding-bottom: 2px;
+  }
