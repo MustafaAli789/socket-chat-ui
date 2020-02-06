@@ -16,6 +16,7 @@ const Chat = ({ location })=> { //location is a prop coming from react router
     const [room, setRoom] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+    const [users, setUsers] = useState([]);
     const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
 
     useEffect(()=>{ //simulates component did mount/component did update -- the react hook method of lifecyle methods
@@ -44,6 +45,12 @@ const Chat = ({ location })=> { //location is a prop coming from react router
         })
     }, [messages])
 
+    useEffect(()=>{
+        socket.on('roomData', (roomData)=>{
+            setUsers(roomData.users)
+        })
+    }, [users])
+
     const sendMessage = (event) => {
         event.preventDefault(); //prevent page from reloading agian
         if (message) {
@@ -56,7 +63,7 @@ const Chat = ({ location })=> { //location is a prop coming from react router
     return (
         <div className="outerContainer">
             <div className="container">
-                <InfoBar room={room} />
+                <InfoBar room={room} users={users}/>
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>

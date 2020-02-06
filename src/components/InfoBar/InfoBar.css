@@ -26,3 +26,26 @@
   .onlineIcon {
     margin-right: 5%;
   }
+
+  #icon{
+      margin-right: 20px;
+      color: white;
+      padding-bottom: 2px;
+  }
+
+  #icon:hover{
+      cursor: pointer;
+      color: grey;
+  }
+
+  .ReactModal__Content {
+    position: absolute; 
+    width: 50%;
+    height: 50%;
+    left: 50%;
+    top: 50%;
+    overflow: auto;
+    background-color: #fff;
+    -webkit-transform: translate(-50,-50%);
+    transform: translate(-50,-50%);
+}
