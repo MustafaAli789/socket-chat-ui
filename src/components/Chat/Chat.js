@@ -58,8 +58,6 @@ const Chat = ({ location })=> { //location is a prop coming from react router
         }
     }
 
-    console.log(message, messages);
-
     return (
         <div className="outerContainer">
             <div className="container">
