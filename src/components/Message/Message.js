@@ -4,7 +4,7 @@ import ReactEmoji from 'react-emoji';
 
 import './Message.css';
 
-const Message = ({ message:{user, text}, name }) => {
+const Message = ({ message:{user, payload, type}, name }) => {
     let isSentByCurrentUser = false
 
     const trimmedName = name.trim().toLowerCase();
@@ -13,20 +13,44 @@ const Message = ({ message:{user, text}, name }) => {
         isSentByCurrentUser = true
     }
 
+    const renderMessage = () => {
+        if (type==="Message"){
+            if (isSentByCurrentUser){
+                return (
+                    <p className='messageText colorWhite'>{ReactEmoji.emojify(payload)}</p>
+                )
+            } else {
+                return (
+                    <p className='messageText colorDark'>{ReactEmoji.emojify(payload)}</p> 
+                )
+            }
+        } else if (type==="Image") {
+            if (isSentByCurrentUser){
+                return(
+                    <p className='messageText colorWhite'>I Sent Image</p>
+                )
+            }else {
+                return(
+                    <p className='messageText colorWhite'>Someone else Sent Image</p>
+                )
+            }
+        }
+    }
+
     return (
         isSentByCurrentUser
             ? (
                 <div className='messageContainer justifyEnd'>
                     <p className='sentText pr-10'>{trimmedName}</p>
                     <div className='messageBox backgroundBlue'>
-                        <p className='messageText colorWhite'>{ReactEmoji.emojify(text)}</p>
+                        {renderMessage()}
                     </div>
                 </div>
             )
             : (
                 <div className='messageContainer justifyStart'>
                     <div className='messageBox backgroundLight'>
-                        <p className='messageText colorDark'>{ReactEmoji.emojify(text)}</p>
+                        {renderMessage()}
                     </div>
                     <p className='sentText pl-10'>{user}</p>
                 </div>
