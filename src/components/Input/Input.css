@@ -56,11 +56,17 @@
     width: 20%;
 }
 
-.buttonsContainer button{
+.buttonsContainer button, .fileUpload{
     background: none;
     border: none;
     flex-grow: 1;
     background-color: #2979ff;
+}
+
+.fileUpload{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #sendIcon{
@@ -98,4 +104,8 @@
   
   input:focus, textarea:focus, select:focus{
     outline: none;
+  }
+
+  input[type="file"]{
+      display: none;
   }

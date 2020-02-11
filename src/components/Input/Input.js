@@ -57,8 +57,14 @@ const Input = ({ message, setMessage, sendMessage }) => {
                 </div>
             </div>
             <div className="buttonsContainer">
-                <button className="imageButton" onClick={()=>{}}><FontAwesomeIcon id="imageIcon" icon={faImages} /></button>
+                <div className="fileUpload">
+                    <label>
+                        <input type="file" />
+                        <FontAwesomeIcon id="imageIcon" icon={faImages} />
+                    </label>
+                </div>
                 <button className="sendButton" onClick={event=>sendMessage(event)}><FontAwesomeIcon id="sendIcon" icon={faPaperPlane} /></button>
+
             </div>
         </div>
     )
