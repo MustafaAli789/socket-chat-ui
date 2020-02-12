@@ -18,7 +18,7 @@ const Chat = ({ location })=> { //location is a prop coming from react router
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
     //const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
-    const ENDPOINT = 'http://localhost:5000'
+    const ENDPOINT = 'http://localhost:5001'
 
     useEffect(()=>{ //simulates component did mount/component did update -- the react hook method of lifecyle methods
         const { name, room } = queryString.parse(location.search);
@@ -31,26 +31,32 @@ const Chat = ({ location })=> { //location is a prop coming from react router
         setName(name);
         setRoom(room);
 
-       socket.emit('join', { name, room }, ()=>{
+       socket.emit('join', { name, room }, (error)=>{
+           if(error){
+               alert(error)
+           }
        }); //emits an event called join that backend will recognize and take action upon
-
-       return () => { //simulates component did unmount
-           socket.emit('disconnect');
-           socket.off(); //turns specific instance of client socket off
-       }
     }, [ENDPOINT, location.search]); //only if the two values in array change is the useEffect called again and the component rerendered
 
     useEffect(()=>{
         socket.on('message', (message)=>{
             setMessages([...messages, message])
         })
-    }, [messages])
 
-    useEffect(()=>{
         socket.on('roomData', (roomData)=>{
             setUsers(roomData.users)
         })
-    }, [users])
+
+        return () => {
+            socket.emit('disconnect');
+            socket.off();
+          }
+        
+    }, [messages])
+
+    useEffect(()=>{
+    
+    })
 
     const sendMessage = (event) => {
         event.preventDefault(); //prevent page from reloading agian

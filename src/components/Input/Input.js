@@ -8,14 +8,6 @@ import './Input.css';
 
 const Input = ({ message, setMessage, sendMessage }) => {
 
-    const displayImageContainer = () => {
-        if (message.type==="Image"){
-            return "flex"
-        } else {
-            return "none"
-        }
-    }
-
     const displayForm = () => {
         if (message.type==="Image") {
             return "none";
@@ -49,6 +41,19 @@ const Input = ({ message, setMessage, sendMessage }) => {
         //and upon completion triggeres the onloadend
     }
 
+    const renderImageContainer = () =>{
+        if (message.type==="Image"){
+            return(
+                <div className="imageContainer" style={{display: 'flex'}}>
+                    <div className="image">
+                        <img src={message.payload} />
+                        <button className="removeImageButton"><FontAwesomeIcon onClick={()=>removeImg()} id="removeImageIcon" icon={faTrashAlt} /></button>
+                    </div>
+                </div>  
+            )
+        } else {return null}
+    }
+
     return (
         <div className="mainInputContainer" style={{height: getHeight()}}>
             <div className="inputField">
@@ -57,15 +62,10 @@ const Input = ({ message, setMessage, sendMessage }) => {
                     type="text"
                     placeholder="Type a message..."
                     value={message.payload}
-                    onChange={event=>setMessage({type: "Message", payload: event.target.value})}
+                    onChange={({ target: { value } }) => setMessage({type: "Message", payload: value})}
                     onKeyPress={event=>event.key === 'Enter' ? sendMessage(event) : null}/>
                 </form>
-                <div className="imageContainer" style={{display: displayImageContainer()}}>
-                    <div className="image">
-                        <img src={message.payload} />
-                        <button className="removeImageButton"><FontAwesomeIcon onClick={()=>removeImg()} id="removeImageIcon" icon={faTrashAlt} /></button>
-                    </div>
-                </div>
+                {renderImageContainer()}
             </div>
             <div className="buttonsContainer">
                 <div className="fileUpload">
