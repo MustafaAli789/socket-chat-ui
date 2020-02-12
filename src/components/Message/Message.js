@@ -27,11 +27,19 @@ const Message = ({ message:{user, payload, type}, name }) => {
         } else if (type==="Image") {
             if (isSentByCurrentUser){
                 return(
+<<<<<<< HEAD
                     <img className='imgMessage colorWhite' src={payload} />
                 )
             }else {
                 return(
                     <img className='imgMessage colorWhite' src={payload}/>
+=======
+                    <img className='imageMessage colorWhite'  src={payload}/>
+                )
+            }else {
+                return(
+                    <img className='imageMessage colorDark' src={payload}/>
+>>>>>>> e76cea583ae5e47a36f49f3e573d936afdb0147a
                 )
             }
         }
