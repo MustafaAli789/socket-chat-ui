@@ -1,75 +1,124 @@
 html, body {
-    font-family: 'Roboto', sans-serif;
-    padding: 0;
-    margin: 0;
-  }
-  
-  #root {
-    height: 100vh;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  .joinOuterContainer {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    height: 100vh;
-    align-items: center;
-    background-color: #1A1A1D;
-  }
-  
-  .joinInnerContainer {
-    width: 20%;
-  }
-  
-  .joinInput {
-    border-radius: 0;
-    padding: 15px 20px;
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.joinOuterContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  height: 100vh;
+  align-items: center;
+  background-color: #1A1A1D;
+}
+
+.joinInnerContainer {
+  width: 20%;
+}
+
+.joinInput {
+  border-radius: 0;
+  padding: 15px 20px;
+  width: 100%;
+}
+
+.heading {
+  color: white;
+  font-size: 2.5em;
+  padding-bottom: 10px;
+  border-bottom: 2px solid white;
+}
+
+.button {
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #2979FF;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
     width: 100%;
-  }
-  
-  .heading {
-    color: white;
-    font-size: 2.5em;
-    padding-bottom: 10px;
-    border-bottom: 2px solid white;
-  }
-  
-  .button {
-      color: #fff !important;
-      text-transform: uppercase;
-      text-decoration: none;
-      background: #2979FF;
-      padding: 20px;
-      border-radius: 5px;
-      display: inline-block;
-      border: none;
-      width: 100%;
-  }
-  
-  .mt-20 {
-    margin-top: 20px;
-  }
-  
-  @media (min-width: 320px) and (max-width: 480px) {
-    .joinOuterContainer {
-      height: 100%;
-    }
-  
-    .joinInnerContainer {
-      width: 90%;
-    }
-  
-  
-  }
-  
-  button:focus {
-    outline: 0;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .joinOuterContainer {
+    height: 100%;
   }
 
-  #signInButton:hover{
-      cursor: pointer;
+  .joinInnerContainer {
+    width: 90%;
   }
+
+
+}
+
+button:focus {
+  outline: 0;
+}
+
+#signInButton:hover{
+    cursor: pointer;
+}
+
+.profilePickerContainer{
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+#profileImage{
+  height: 100%;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+#editIcon{
+  color: white;
+}
+
+#editIcon:hover{
+  cursor: pointer;
+}
+
+
+.editImageContainer{
+  position: relative;
+  border-radius: 50%;
+  height: 100%;
+  width: 100px;
+}
+
+.editImageLabel{
+  position: absolute;
+  top: 10%;
+  left: 95%;
+  height: 20px;
+  width: 20px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  background: none;
+  border:none;
+}

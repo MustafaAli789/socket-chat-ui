@@ -26,7 +26,7 @@ const InfoBar = ({ room, users }) =>{
                     <ListItem><ListItemText primary={<span style={{ fontWeight: 'bold' }}>Users Online</span>} /></ListItem>
                     <Divider />
                     {users.map((user, index)=><ListItem key={index}>
-                        <ListItemIcon><FontAwesomeIcon icon={faCircle} style={{ color: '#2cf92c', fontSize: '10px' }} /></ListItemIcon>
+                        <ListItemIcon style={{minWidth: '30px'}}><FontAwesomeIcon icon={faCircle} style={{ color: '#2cf92c', fontSize: '10px' }} /></ListItemIcon>
                         <ListItemText primary={user.name} />
                     </ListItem>)}
                 </List>

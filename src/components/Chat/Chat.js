@@ -10,19 +10,22 @@ import Messages from '../Messages/Messages';
 
 let socket;
 
-const Chat = ({ location })=> { //location is a prop coming from react router
+const Chat = ({ location, profile })=> { //location is a prop coming from react router
 
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
     const [message, setMessage] = useState({});
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
+
     //const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
 
     const ENDPOINT = 'http://localhost:5000'
 
     useEffect(()=>{ //simulates component did mount/component did update -- the react hook method of lifecyle methods
         const { name, room } = queryString.parse(location.search);
+
+        console.log(profile)
 
         //theres a server running on port 5000 listening for socket connections
         //the line below is creating a socket and connecting to the port on which the server is running
@@ -32,7 +35,7 @@ const Chat = ({ location })=> { //location is a prop coming from react router
         setName(name);
         setRoom(room);
 
-       socket.emit('join', { name, room }, (error)=>{
+       socket.emit('join', { name, room, profile }, (error)=>{
            if(error){
                alert(error)
            }
@@ -76,7 +79,7 @@ const Chat = ({ location })=> { //location is a prop coming from react router
         <div className="outerContainer">
             <div className="container">
                 <InfoBar room={room} users={users}/>
-                <Messages messages={messages} name={name} />
+                <Messages messages={messages} name={name} users={users} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
