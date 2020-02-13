@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { Dropbox } from '@icons-pack/react-simple-icons';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import Divider from '@material-ui/core/Divider';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './InfoBar.css';
 
@@ -18,7 +23,10 @@ const InfoBar = ({ room, users }) =>{
         return (
             <div>
                 <List>
+                    <ListItem><ListItemText primary={<span style={{ fontWeight: 'bold' }}>Users Online</span>} /></ListItem>
+                    <Divider />
                     {users.map((user, index)=><ListItem key={index}>
+                        <ListItemIcon><FontAwesomeIcon icon={faCircle} style={{ color: '#2cf92c', fontSize: '10px' }} /></ListItemIcon>
                         <ListItemText primary={user.name} />
                     </ListItem>)}
                 </List>
@@ -32,12 +40,12 @@ const InfoBar = ({ room, users }) =>{
                 {usersList(users)}
             </Drawer>
             <div className="leftInnerContainer">
-                <img className="onlineIcon" src={onlineIcon} alt="online" />
+                <FontAwesomeIcon className="onlineIcon" icon={faCircle} style={{ color: '#2cf92c', fontSize: '10px' }} />
                     <h3>{room}</h3>
             </div>
             <div className="rightInnerContainer">
-                <Dropbox id="icon" onClick={()=>setDrawerOpen(true)} />
-                <a href="/"><img src={closeIcon} alt="close" /></a>
+                <FontAwesomeIcon id="icon" onClick={()=>setDrawerOpen(true)} icon={faUsers} />
+                <a href="/"><FontAwesomeIcon icon={faTimes} style={{ color: 'white'}} /></a>
             </div>
         </div>
     )

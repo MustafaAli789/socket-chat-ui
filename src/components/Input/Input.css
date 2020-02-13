@@ -74,7 +74,6 @@
 }
 
 #sendIcon:hover{
-    color:grey;
     cursor: pointer;
 }
 
@@ -83,7 +82,6 @@
 }
 
 #imageIcon:hover{
-    color:grey;
     cursor: pointer;
 }
 

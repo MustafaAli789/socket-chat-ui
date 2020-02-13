@@ -17,7 +17,9 @@ const Chat = ({ location })=> { //location is a prop coming from react router
     const [message, setMessage] = useState({});
     const [messages, setMessages] = useState([]);
     const [users, setUsers] = useState([]);
-    const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
+    //const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
+
+    const ENDPOINT = 'http://localhost:5000'
 
     useEffect(()=>{ //simulates component did mount/component did update -- the react hook method of lifecyle methods
         const { name, room } = queryString.parse(location.search);
@@ -53,19 +55,19 @@ const Chat = ({ location })=> { //location is a prop coming from react router
         
     }, [messages])
 
-    useEffect(()=>{
-    
-    })
-
     const sendMessage = (event) => {
         event.preventDefault(); //prevent page from reloading agian
 
-        if (message.type === "Message") {
-            if (message.payload.length>0)
-                socket.emit('sendMessage', {type: "Message", payload: message.payload}, ()=>{setMessage({type: "Message", payload: ""})})
+        let messagePayload = message.payload
+        let messageType = message.type
+        setMessage({type: "Message", payload: ""})
+
+        if (messageType === "Message") {
+            if (messagePayload.length>0)
+                socket.emit('sendMessage', {type: "Message", payload: messagePayload}, ()=>{})
         } else if (message.type==="Image"){
-            if (message.payload.length>0)
-                socket.emit('sendMessage', {type: "Image", payload: message.payload}, ()=>{setMessage({type: "Message", payload: ""})})
+            if (messagePayload.length>0)
+                socket.emit('sendMessage', {type: "Image", payload: messagePayload}, ()=>{setMessage({type: "Message", payload: ""})})
         }
         
     }

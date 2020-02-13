@@ -9,11 +9,7 @@ const Message = ({ message:{user, payload, type}, name }) => {
 
     const trimmedName = name.trim().toLowerCase();
 
-    if (user === trimmedName) {
-        isSentByCurrentUser = true
-    }
-
-    const renderMessage = () => {
+    const renderMessage = (i) => {
         if (type==="Message"){
             if (isSentByCurrentUser){
                 return (
@@ -21,7 +17,7 @@ const Message = ({ message:{user, payload, type}, name }) => {
                 )
             } else {
                 return (
-                    <p className='messageText colorDark'>{ReactEmoji.emojify(payload)}</p> 
+                    <p className='messageText colorWhite'>{ReactEmoji.emojify(payload)}</p> 
                 )
             }
         } else if (type==="Image") {
@@ -38,7 +34,7 @@ const Message = ({ message:{user, payload, type}, name }) => {
     }
 
     return (
-        isSentByCurrentUser
+        trimmedName === user
             ? (
                 <div className='messageContainer justifyEnd'>
                     <p className='sentText pr-10'>{trimmedName}</p>
@@ -47,14 +43,22 @@ const Message = ({ message:{user, payload, type}, name }) => {
                     </div>
                 </div>
             )
-            : (
-                <div className='messageContainer justifyStart'>
-                    <div className='messageBox backgroundLight'>
-                        {renderMessage()}
+            : user !== 'admin'
+                ?  (
+                    <div className='messageContainer justifyStart'>
+                        <div className='messageBox backgroundLight'>
+                            {renderMessage()}
+                        </div>
+                        <p className='sentText pl-10'>{user}</p>
                     </div>
-                    <p className='sentText pl-10'>{user}</p>
-                </div>
-            )
+                ) : (
+                    <div className='messageContainer justifyStart'>
+                        <div className='messageBox backgroundAdmin'>
+                            {renderMessage()}
+                        </div>
+                        <p className='sentText pl-10'>{user}</p>
+                    </div>
+                )
     )
 }
 
