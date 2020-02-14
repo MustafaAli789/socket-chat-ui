@@ -21,7 +21,7 @@ const Messages = ({ messages, name, users }) => {
                     src = guestUser
                 }
                 return(
-                    <div key={i}><Message message={message} name={name} src={src} /></div>
+                    <div key={i} style={{ marginTop: '1rem' }}><Message message={message} name={name} src={src} /></div>
                 )
             })}
         </ScrollToBottom>

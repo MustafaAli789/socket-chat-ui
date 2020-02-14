@@ -35,9 +35,9 @@ const Message = ({ message:{user, payload, type}, name, src }) => {
         }
     }
 
-    const renderProfileImage = (style) =>{
+    const renderProfileImage = () =>{
         return(
-            <div  style={style} className="profileImage">
+            <div className="profileImage">
                 <img src={src} />
             </div>
         )
@@ -46,30 +46,64 @@ const Message = ({ message:{user, payload, type}, name, src }) => {
     return (
         trimmedName === user
             ? (
-                <div className='messageContainer justifyEnd'>
-                    <p className='sentText pr-10'>{trimmedName}</p>
-                    <div className='messageBox backgroundBlue'>
-                        {renderMessage()}
+                <div className='container'>
+                    <div className="row">
+                        <div className="col-11 pl-0 pr-2 d-flex justify-content-end">
+                            <p className='sentText mb-0'>{trimmedName}</p>
+                        </div>
+                        <div className="col-1 pl-0 pr-0">
+                        </div>
                     </div>
-                    {renderProfileImage({marginLeft: '1rem'})}
+                    <div className="row">
+                        <div className="col-11 d-flex align-items-end pl-0 pr-0 justify-content-end">
+                            <div className='messageBox backgroundBlue'>
+                                {renderMessage()}
+                            </div> 
+                        </div>
+                        <div className="col-1 d-flex align-items-end pr-0 pl-0 justify-content-center">
+                            {renderProfileImage()}
+                        </div>
+                    </div> 
                 </div>
             )
             : user !== 'admin'
                 ?  (
-                    <div className='messageContainer justifyStart'>
-                        {renderProfileImage({marginRight: '1rem'})}
-                        <div className='messageBox backgroundLight'>
-                            {renderMessage()}
+                    <div className='container'>
+                        <div className="row">
+                            <div className="col-1 pl-0 pr-0"></div>
+                            <div className="col-11 pl-2 pr-0">
+                                <p className='sentText mb-0'>{user}</p>
+                            </div>
                         </div>
-                        <p className='sentText pl-10'>{user}</p>
+                        <div className="row">
+                            <div className="col-1 d-flex align-items-end pr-0 pl-0 justify-content-center">
+                                {renderProfileImage()}
+                            </div>
+                            <div className="col-11 d-flex align-items-end pl-0">
+                                <div className='messageBox backgroundLight'>
+                                    {renderMessage()}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 ) : (
-                    <div className='messageContainer justifyStart'>
-                        {renderProfileImage({marginRight: '1rem'})}
-                        <div className='messageBox backgroundAdmin'>
-                            {renderMessage()}
+                    <div className='container'>
+                        <div className="row">
+                            <div className="col-1 pl-0 pr-0"></div>
+                            <div className="col-11 pl-2 pr-0">
+                                <p className='sentText mb-0'>{user}</p>
+                            </div>
                         </div>
-                        <p className='sentText pl-10'>{user}</p>
+                        <div className="row">
+                            <div className="col-1 d-flex align-items-end pr-0 pl-0 justify-content-center">
+                                {renderProfileImage()}
+                            </div>
+                            <div className="col-11 d-flex align-items-end pl-0">
+                                <div className='messageBox backgroundAdmin'>
+                                    {renderMessage()}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 )
     )

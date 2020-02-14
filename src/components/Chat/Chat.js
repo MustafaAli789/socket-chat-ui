@@ -87,7 +87,7 @@ const Chat = ({ location, profile })=> { //location is a prop coming from react 
 
     return (
         <div className="outerContainer">
-            <div className="container">
+            <div className="Container">
                 <InfoBar room={room} users={connectedUsers}/>
                 <Messages messages={messages} name={name} users={allUsers} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
