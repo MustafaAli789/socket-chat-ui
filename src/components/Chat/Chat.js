@@ -16,7 +16,8 @@ const Chat = ({ location, profile })=> { //location is a prop coming from react 
     const [room, setRoom] = useState('');
     const [message, setMessage] = useState({});
     const [messages, setMessages] = useState([]);
-    const [users, setUsers] = useState([]);
+    const [allUsers, setAllUsers] = useState([]);
+    const [connectedUsers, setConnectedUsers] = useState([]);
 
     //const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
 
@@ -48,7 +49,18 @@ const Chat = ({ location, profile })=> { //location is a prop coming from react 
         })
 
         socket.on('roomData', (roomData)=>{
-            setUsers(roomData.users)
+            setConnectedUsers(roomData.users)
+
+            let users = allUsers;
+
+            //adding new users to the state
+            roomData.users.forEach(user=>{
+                if (users.find(e => e.name === user.name) === undefined) {
+                    users.push(user)
+                }
+            })
+
+            setAllUsers(users)
         })
 
         return () => {
@@ -78,8 +90,8 @@ const Chat = ({ location, profile })=> { //location is a prop coming from react 
     return (
         <div className="outerContainer">
             <div className="container">
-                <InfoBar room={room} users={users}/>
-                <Messages messages={messages} name={name} users={users} />
+                <InfoBar room={room} users={connectedUsers}/>
+                <Messages messages={messages} name={name} users={allUsers} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
