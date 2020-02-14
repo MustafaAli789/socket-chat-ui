@@ -38,6 +38,16 @@
       cursor: pointer;
   }
 
+  #shareIcon{
+    margin-right: 20px;
+    color: white;
+    padding-bottom: 2px;
+}
+
+#shareIcon:hover{
+    cursor: pointer;
+}
+
   .ReactModal__Content {
     position: absolute; 
     width: 50%;

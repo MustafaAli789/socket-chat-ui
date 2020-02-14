@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Join from './components/Join/Join';
 import Chat from './components/Chat/Chat';
+import JoinRoom from './components/JoinRoom/JoinRoom';
 
 const App = ()=>{
     const [profile, setProfile] = useState("https://ssbworld.com/images/character-profiles/rounded/Mario-Profile-Round.png")
@@ -12,6 +13,7 @@ const App = ()=>{
         <Router>
             <Route path="/" exact render={(props)=><Join {...props} profile={profile} setProfile={setProfile} />} />
             <Route path="/chat" render={(props)=><Chat {...props} profile={profile} />} />
+            <Route path="/joinRoom" render={(props)=><JoinRoom {...props} profile={profile} setProfile={setProfile} />} />
         </Router>
     )
 }

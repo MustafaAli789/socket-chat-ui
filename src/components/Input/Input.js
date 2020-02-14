@@ -69,7 +69,7 @@ const Input = ({ message, setMessage, sendMessage }) => {
             </div>
             <div className="buttonsContainer">
                 <div className="fileUpload">
-                    <label>
+                    <label style={{ marginBottom: '0px' }}>
                         <input type="file" 
                         accept="image/png, image/jpeg, image/jpg"
                         onChange={(e)=>handleImageChange(e)}/>
