@@ -19,9 +19,7 @@ const Chat = ({ location, profile })=> { //location is a prop coming from react 
     const [allUsers, setAllUsers] = useState([]);
     const [connectedUsers, setConnectedUsers] = useState([]);
 
-    //const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
-
-    const ENDPOINT = 'http://localhost:5000'
+    const ENDPOINT = 'https://socket-chat-api.herokuapp.com/';
 
     useEffect(()=>{ //simulates component did mount/component did update -- the react hook method of lifecyle methods
         const { name, room } = queryString.parse(location.search);
